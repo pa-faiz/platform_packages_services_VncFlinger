@@ -95,14 +95,9 @@ int startService();
 
 extern "C" void Java_com_libremobileos_vncflinger_VncFlinger_notifyServerCursorChanged(
     JNIEnv* env, jobject thiz, jobject pointerIconObj) {
-    PointerIcon pointerIcon;
 
     if (desktop != NULL) {
-        status_t result = android_view_PointerIcon_getLoadedIcon(env, pointerIconObj, &pointerIcon);
-        if (result) {
-            ALOGE("Failed to load pointer icon.");
-            return;
-        }
+        PointerIcon pointerIcon = android_view_PointerIcon_toNative(env, pointerIconObj);
         if (!pointerIcon.bitmap.isValid()) {
             ALOGE("Pointer icon bitmap not valid");
             return;

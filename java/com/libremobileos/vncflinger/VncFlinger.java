@@ -184,7 +184,8 @@ public class VncFlinger extends Service implements DisplayManager.DisplayListene
                         Context content = mContext;
                         if (!mMirrorInternal)
                             content = mContext.createDisplayContext(mDisplay.getDisplay());
-                        icon = PointerIcon.getSystemIcon(content, iconId).load(content);
+                        icon = PointerIcon.getLoadedSystemIcon(
+                                content, iconId, /* useLargeIcons */ false);
                     }
                     if ((mOldPointerIcon != null) && mOldPointerIcon.equals(icon))
                         return;
