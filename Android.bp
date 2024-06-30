@@ -3,7 +3,6 @@ android_app {
     platform_apis: true,
     certificate: "platform",
     privileged: true,
-    init_rc: ["etc/vncflinger.rc"],
     srcs: ["java/**/*.java"],
     optimize: {
         proguard_flags_files: ["proguard-rules.pro"],
