@@ -53,7 +53,7 @@ VirtualDisplay::VirtualDisplay(ui::Size* mode, ui::Rotation* state,
     mCpuConsumer->setFrameAvailableListener(listener);
 
     if (mLayerId >= 0) {
-        mDisplayToken = SurfaceComposerClient::createDisplay(String8("VNC-VirtualDisplay"), true);
+        mDisplayToken = SurfaceComposerClient::createVirtualDisplay("VNC-VirtualDisplay", true);
 
         SurfaceComposerClient::Transaction t;
         t.setDisplaySurface(mDisplayToken, mProducer);
@@ -69,7 +69,7 @@ VirtualDisplay::VirtualDisplay(ui::Size* mode, ui::Rotation* state,
 VirtualDisplay::~VirtualDisplay() {
     mCpuConsumer.clear();
     mProducer.clear();
-    SurfaceComposerClient::destroyDisplay(mDisplayToken);
+    SurfaceComposerClient::destroyVirtualDisplay(mDisplayToken);
 
     ALOGV("Virtual display destroyed");
 }
